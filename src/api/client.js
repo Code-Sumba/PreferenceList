@@ -24,6 +24,23 @@ api.interceptors.response.use(
         window.location.href = "/";
       }
     }
+
+    // FastAPI's own request validation (422) returns `detail` as an array
+    // of {type, loc, msg, input} objects instead of a string — every call
+    // site does `toast.error(e.response?.data?.detail || "...")`, and
+    // react-hot-toast crashes (React error #31) trying to render that
+    // array as a child. Flatten it into a string here, once, so every
+    // existing call site keeps working unchanged.
+    const detail = err.response?.data?.detail;
+    if (Array.isArray(detail)) {
+      err.response.data.detail = detail
+        .map((d) => {
+          const field = Array.isArray(d?.loc) ? d.loc[d.loc.length - 1] : null;
+          return field ? `${field}: ${d.msg}` : d.msg;
+        })
+        .join("; ");
+    }
+
     return Promise.reject(err);
   }
 );
