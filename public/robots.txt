@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /tool
+Disallow: /dashboard
+Disallow: /payment
+Disallow: /staff/
+
+Sitemap: https://your-domain.com/sitemap.xml
