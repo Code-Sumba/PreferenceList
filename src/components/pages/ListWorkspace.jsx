@@ -51,6 +51,7 @@ export function ListWorkspace({ slotLabel, initialForm, branchNameToId, credits,
     if (!window.confirm(`Generating will use 1 of your ${credits} remaining credit(s) and send your list straight to our counselling team for review. Continue?`)) return;
 
     if (!form.percentile) return toast.error("Percentile is required.");
+    if (!form.rank) return toast.error("Rank is required.");
 
     const branchPrefs = (form.preferred_branches || [])
       .filter(Boolean)
@@ -156,6 +157,10 @@ export function ListWorkspace({ slotLabel, initialForm, branchNameToId, credits,
             <div>
               <label style={s.label}>Percentile</label>
               <input style={s.input} type="number" step="0.0000001" value={form.percentile} onChange={set("percentile")} />
+            </div>
+            <div>
+              <label style={s.label}>Rank</label>
+              <input style={s.input} type="number" value={form.rank} onChange={set("rank")} />
             </div>
             <div>
               <label style={s.label}>Risk Strategy</label>
