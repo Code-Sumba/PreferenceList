@@ -6,6 +6,7 @@ import { AppLayout } from "../layout/AppLayout";
 import { Spinner, Tag } from "../ui";
 import { CollegeCard } from "../college/CollegeCard";
 import { AddCollegePanel } from "../college/AddCollegePanel";
+import { CollegeFilterPanel } from "./CollegeFilterPanel";
 import { approveReview, getReview, updateReviewList } from "../../api";
 
 export default function ReviewDetailPage() {
@@ -21,6 +22,7 @@ export default function ReviewDetailPage() {
   const [dragFrom, setDragFrom] = useState(null);
   const [dragOver, setDragOver] = useState(null);
   const [dirty, setDirty] = useState(false);
+  const [filterRange, setFilterRange] = useState(null); // {lo, hi} | null
 
   useEffect(() => {
     getReview(id)
@@ -46,6 +48,22 @@ export default function ReviewDetailPage() {
     setDragFrom(null); setDragOver(null); setDirty(true);
   };
   const handleAdd = (item) => { setColleges((prev) => [...prev, item]); setDirty(true); };
+
+  const inRange = (item) => !filterRange || (item.cutoff_percentile >= filterRange.lo && item.cutoff_percentile <= filterRange.hi);
+  const indexed = colleges.map((item, idx) => ({ item, idx }));
+  const visible = indexed.filter(({ item }) => inRange(item));
+
+  const handleBulkRemoveOutside = () => {
+    if (!filterRange) return;
+    const keepCount = visible.length;
+    const removeCount = colleges.length - keepCount;
+    if (removeCount <= 0) return toast.error("Nothing outside this range to remove.");
+    if (!window.confirm(`Remove ${removeCount} college(s) outside ${filterRange.lo.toFixed(1)}–${filterRange.hi.toFixed(1)} percentile? Keeps the ${keepCount} currently visible.`)) return;
+    setColleges((prev) => prev.filter(inRange).map((c, i) => ({ ...c, sr_no: i + 1 })));
+    setFilterRange(null);
+    setDirty(true);
+    toast.success(`Removed ${removeCount} college(s).`);
+  };
 
   const handleSave = async () => {
     setSaving(true);
@@ -99,12 +117,29 @@ export default function ReviewDetailPage() {
 
       <div style={s.card}>
         <div style={s.cardBody}>
+          <CollegeFilterPanel percentile={review.percentile} onRangeChange={setFilterRange} />
+
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+            <span style={{ fontSize: 12, color: C.muted, fontWeight: 600 }}>
+              Showing {visible.length} of {colleges.length} colleges
+              {filterRange && " — drag-and-drop is disabled while a filter is active"}
+            </span>
+            {filterRange && (
+              <button onClick={handleBulkRemoveOutside} style={{ ...s.btnDanger, padding: "6px 14px", fontSize: 12 }}>
+                Remove {colleges.length - visible.length} outside range
+              </button>
+            )}
+          </div>
+
           <div style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 12 }} onDragLeave={() => setDragOver(null)}>
-            {colleges.map((item, idx) => (
+            {visible.map(({ item, idx }) => (
               <CollegeCard
                 key={`${item.college_code}-${item.branch_code}-${idx}`}
                 item={item} index={idx}
-                onDelete={handleDelete} onDragStart={handleDragStart} onDragOver={handleDragOver} onDrop={handleDrop}
+                onDelete={handleDelete}
+                onDragStart={filterRange ? undefined : handleDragStart}
+                onDragOver={filterRange ? undefined : handleDragOver}
+                onDrop={filterRange ? undefined : handleDrop}
                 isDragOver={dragOver === idx}
               />
             ))}

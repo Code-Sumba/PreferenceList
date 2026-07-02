@@ -1,4 +1,5 @@
 import api from "./client";
+import { getUtmParams } from "../utils/utm";
 
 // baseURL on the shared axios instance is "/" (not "/api") because this
 // app talks to several distinct prefixes (/api/client/*, /api/auth/*,
@@ -14,7 +15,7 @@ export const getBrandTheme = (host, ref = "") => {
 
 // ── Student self-serve auth (auto-active, no admin approval gate) ──────────
 export const sendOtp = (email, ref = "") =>
-  api.post("/api/client/auth/send-otp", { email, ref }).then((r) => r.data);
+  api.post("/api/client/auth/send-otp", { email, ref, ...getUtmParams() }).then((r) => r.data);
 
 export const verifyOtp = (email, otp) =>
   api.post("/api/client/auth/verify-otp", { email, otp }).then((r) => r.data);

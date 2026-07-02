@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+  OG image source — NOT served to users, this is a design file only.
+  How to turn this into the actual og-image.png WhatsApp/Facebook need:
+    1. Open this file directly in Chrome (double-click it, or drag into browser).
+    2. Open DevTools (F12) → toggle device toolbar (Ctrl+Shift+M) → set a
+       custom size of exactly 1200 x 630 → set zoom to 100%.
+    3. Right-click the page → "Capture screenshot" (via DevTools' command
+       menu, Ctrl+Shift+P → "Capture screenshot") — this captures the exact
+       viewport as a PNG, cleanly, no browser chrome.
+    4. Save the PNG as client/public/og-image.png (the filename index.html's
+       og:image / twitter:image tags already point to).
+  No image-generation or SVG-rasterization tool was available on this
+  machine (checked for ImageMagick/rsvg-convert/Inkscape — none installed),
+  so this HTML-screenshot approach is the most reliable zero-install path.
+-->
+<html>
+<head>
+<meta charset="UTF-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .card {
+    width: 1120px;
+    height: 550px;
+    background: #ffffff;
+    border-radius: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 80px;
+  }
+  .logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+    margin-bottom: 28px;
+    object-fit: cover;
+  }
+  .brand {
+    font-size: 22px;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+  .tagline {
+    font-size: 15px;
+    color: #6b7280;
+    font-weight: 500;
+    margin-bottom: 36px;
+  }
+  h1 {
+    font-size: 48px;
+    font-weight: 900;
+    color: #111827;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 12px 28px;
+    border-radius: 40px;
+    border: 2px solid #2563eb;
+  }
+  .sub {
+    font-size: 17px;
+    color: #6b7280;
+    margin-top: 24px;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <img class="logo" src="/logo.png" alt="MindzSpark" />
+    <div class="brand">MindzSpark</div>
+    <div class="tagline">MHT-CET Counselling Excellence</div>
+    <h1>Counsellor-Reviewed<br/>CAP Preference List</h1>
+    <div class="badge">₹349 · Not Raw AI Output</div>
+    <div class="sub">2 personalized lists · Verified before you see them</div>
+  </div>
+</body>
+</html>

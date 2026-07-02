@@ -1,5 +1,5 @@
 import { useBrand } from "../../contexts/BrandContext";
-import { NavBar } from "../ui";
+import { NavBar, WhatsAppFloat } from "../ui";
 
 export function PublicLayout({ children, navLinks = [] }) {
   const { s, brand } = useBrand();
@@ -10,6 +10,7 @@ export function PublicLayout({ children, navLinks = [] }) {
       <footer style={{ textAlign: "center", padding: "24px", color: "#9ca3af", fontSize: 12 }}>
         {brand.footer_text || `© ${new Date().getFullYear()} ${brand.name}`}
       </footer>
+      <WhatsAppFloat />
     </div>
   );
 }

@@ -201,3 +201,5 @@ export function Tag({ label, color }) {
   const c = color || C.primary;
   return <span style={{ ...s.badge, background: `${c}14`, color: c, border: `1px solid ${c}28` }}>{label}</span>;
 }
+
+export { WhatsAppFloat } from "./WhatsAppFloat";

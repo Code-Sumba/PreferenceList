@@ -8,6 +8,7 @@ import { Spinner } from "../ui";
 import { createOrder } from "../../api";
 import { loadRazorpayScript, openRazorpayCheckout } from "../../utils/razorpay";
 import { getPendingForm } from "../../utils/pendingForm";
+import { trackPurchase } from "../../utils/tracking";
 
 export default function PaymentPage() {
   const { brand, C, s } = useBrand();
@@ -30,6 +31,10 @@ export default function PaymentPage() {
   useEffect(() => {
     const status = searchParams.get("rzp_status");
     if (status === "success") {
+      trackPurchase({
+        orderId: searchParams.get("order_id") || "",
+        amountInr: parseFloat(searchParams.get("amount_inr")) || 349,
+      });
       toast.success("Payment successful! You have 2 more credits.");
       navigate("/tool", { replace: true });
     } else if (status === "failed") {
