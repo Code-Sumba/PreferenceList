@@ -1,16 +1,13 @@
 // Floating WhatsApp button for pre-payment doubts — India's paid-edu
 // products sell on WhatsApp trust, so this needs to be reachable from every
 // public (pre-login) page, not tucked in a footer.
-//
-// PLACEHOLDER NUMBER: replace WHATSAPP_NUMBER below with the real WhatsApp
-// Business number (country code + number, no +, no spaces, e.g. "919876543210")
-// before this goes live — right now it points nowhere real.
-const WHATSAPP_NUMBER = "91XXXXXXXXXX"; // TODO: replace with real number
+import { WHATSAPP_IS_CONFIGURED, whatsappChatUrl } from "../../config/whatsapp";
+
 const DEFAULT_MESSAGE = "Hi! I have a question about the MHT-CET preference list.";
 
 export function WhatsAppFloat() {
-  const isConfigured = !WHATSAPP_NUMBER.includes("X");
-  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_MESSAGE)}`;
+  const isConfigured = WHATSAPP_IS_CONFIGURED;
+  const href = whatsappChatUrl(DEFAULT_MESSAGE);
 
   return (
     <a
@@ -21,7 +18,7 @@ export function WhatsAppFloat() {
         if (!isConfigured) {
           e.preventDefault();
           // eslint-disable-next-line no-console
-          console.warn("WhatsAppFloat: set a real WHATSAPP_NUMBER in WhatsAppFloat.jsx before launch.");
+          console.warn("WhatsAppFloat: set a real WHATSAPP_NUMBER in src/config/whatsapp.js before launch.");
         }
       }}
       title={isConfigured ? "Chat with us on WhatsApp" : "WhatsApp number not configured yet"}

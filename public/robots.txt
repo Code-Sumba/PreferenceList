@@ -5,4 +5,34 @@ Disallow: /dashboard
 Disallow: /payment
 Disallow: /staff/
 
+# AI crawlers — explicitly allowed so answer engines (ChatGPT/Perplexity/
+# Google AI Overviews) can read and cite the public pages below.
+User-agent: GPTBot
+Allow: /
+Disallow: /tool
+Disallow: /dashboard
+Disallow: /payment
+Disallow: /staff/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /tool
+Disallow: /dashboard
+Disallow: /payment
+Disallow: /staff/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /tool
+Disallow: /dashboard
+Disallow: /payment
+Disallow: /staff/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /tool
+Disallow: /dashboard
+Disallow: /payment
+Disallow: /staff/
+
 Sitemap: https://collegelist.mindzspark.in/sitemap.xml

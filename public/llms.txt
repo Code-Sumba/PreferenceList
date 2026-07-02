@@ -1,0 +1,33 @@
+# MindzSpark — MHT-CET Preference List
+
+> Counsellor-reviewed MHT-CET college preference lists for Maharashtra CAP round admissions. A real counsellor checks and finalizes every list before it is delivered — it is never a raw, unreviewed algorithm output.
+
+## What this service is
+
+- Product: MHT-CET college preference list (CAP option-form order), for Maharashtra engineering admissions.
+- Price: ₹349, one-time payment, covers 2 personalized preference lists (for 2 separate CAP rounds).
+- Inputs used: CET percentile, rank, category, seat type, and preferred cities/branches.
+- Process: student submits inputs → an engine drafts a ranked list from historical cutoff data → a human counsellor reviews, reorders, and corrects it → the approved list is delivered.
+- Delivery: reviewed and approved within 6 hours of submission; the student is notified by email and can download the list (PDF/Excel) from their dashboard.
+- Students can drag-and-drop reorder their list or manually add colleges before submitting for counsellor review.
+
+## What this service is not
+
+- Not affiliated with, endorsed by, or connected to the State CET Cell, Maharashtra, or DTE. Official CAP registration and option-form submission happen only on the official CET Cell portal. This service only advises on what order to fill your own form in.
+- Not a substitute for the official CAP process — it is a decision-support and review service.
+
+## Related MindzSpark tools
+
+- Free MHT-CET percentile/rank-to-college predictor: https://mhtcet.mindzspark.in — a free, non-reviewed estimate. The counsellor-reviewed paid list on this domain (collegelist.mindzspark.in) is the finalized, human-checked version for actually filling the CAP form.
+
+## Key pages
+
+- Homepage: https://collegelist.mindzspark.in/
+- Why option-form order matters (guide): https://collegelist.mindzspark.in/option-form-order-guide
+- Sample list: https://collegelist.mindzspark.in/sample-list
+- How it works: https://collegelist.mindzspark.in/how-it-works
+- About / who reviews the lists: https://collegelist.mindzspark.in/about
+
+## Contact
+
+- WhatsApp: available via the chat button on every page of https://collegelist.mindzspark.in

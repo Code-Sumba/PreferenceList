@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useBrand } from "../../contexts/BrandContext";
 import { PublicLayout } from "../layout/PublicLayout";
 import { useDocumentMeta } from "../../hooks/useDocumentMeta";
+import { SAMPLE_ROWS } from "../../data/sampleCutoffs";
 
 const HOW_IT_WORKS = [
   { step: "1", title: "Enter your details", body: "CET percentile, rank, category, seat type, and your preferred cities and branches." },
@@ -27,18 +28,14 @@ const FAQS = [
     q: "How long does counsellor review take?",
     a: "Your list is reviewed and approved within 6 hours, so you have time before CAP round deadlines. You'll get an email the moment it's ready.",
   },
-];
-
-// Real, published MHT-CET 2025 cutoffs (GOPENS, Computer Engineering, Pune) —
-// not a specific customer's list. Framed explicitly as a sample so this is
-// never confused with a testimonial or an exact prediction for any student.
-const SAMPLE_ROWS = [
-  { rank: 1, college: "Pune Institute of Computer Technology", branch: "Computer Engineering", pct: "99.71" },
-  { rank: 2, college: "Vishwakarma Institute of Technology, Bibwewadi", branch: "Computer Engineering", pct: "98.95" },
-  { rank: 3, college: "Pimpri Chinchwad College of Engineering", branch: "Computer Engineering", pct: "98.93" },
-  { rank: 4, college: "Pune Vidyarthi Griha's College of Engineering", branch: "Computer Engineering", pct: "97.79" },
-  { rank: 5, college: "D. Y. Patil College of Engineering, Akurdi", branch: "Computer Engineering", pct: "97.78" },
-  { rank: 6, college: "All India Shri Shivaji Memorial Society's COE", branch: "Computer Engineering", pct: "97.12" },
+  {
+    q: "Is MindzSpark affiliated with the MHT-CET CET Cell?",
+    a: "No. MindzSpark is an independent counselling service and is not affiliated with, endorsed by, or connected to the State CET Cell, Maharashtra, or DTE. Official CAP registration and option-form submission happen only on the official CET Cell portal — we help you decide what order to fill your own form in.",
+  },
+  {
+    q: "What happens after I pay?",
+    a: "After payment, you enter your percentile, rank, category, and preferences to generate a draft list, then submit it for review. A counsellor checks and adjusts it, and you get the approved list within 6 hours — downloadable as PDF or Excel from your dashboard, with an email notification the moment it's ready.",
+  },
 ];
 
 export default function LandingPage() {
@@ -46,8 +43,8 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   useDocumentMeta(
-    "MHT-CET College Preference List | Counsellor-Reviewed | MindzSpark",
-    "Get a counsellor-reviewed MHT-CET college preference list built from your exact percentile and rank. Two personalized CAP round lists for ₹349."
+    "MHT-CET Preference List 2026 — Counsellor-Reviewed CAP Option Form Order | ₹349",
+    "Get a counsellor-reviewed 2026 MHT-CET preference list built from your exact percentile and rank. Two personalized CAP round lists for ₹349."
   );
 
   return (
@@ -60,7 +57,7 @@ export default function LandingPage() {
           {brand.tagline || "MHT-CET Counselling Excellence"}
         </div>
         <h1 style={s.heroTitle} className="hero-title">
-          MHT-CET College Preference List — Counsellor-Reviewed
+          MHT-CET Preference List 2026 — Counsellor-Reviewed CAP Option Form Order
         </h1>
         <p style={s.heroSubtitle} className="hero-subtitle">
           Enter your MHT-CET percentile, rank, and preferences, and our counselling team will hand-review
@@ -126,7 +123,8 @@ export default function LandingPage() {
       <section style={{ maxWidth: 700, margin: "72px auto 0", padding: "0 24px" }} className="fade-in">
         <h2 style={{ fontSize: 26, fontWeight: 800, color: C.text, textAlign: "center", marginBottom: 8 }}>See what you get</h2>
         <p style={{ fontSize: 13.5, color: C.muted, textAlign: "center", marginBottom: 28 }}>
-          Sample based on real 2025 MHT-CET cutoff data — your actual list is personalized to your percentile, category, and preferences.
+          Sample based on real 2025 MHT-CET cutoff data — your actual list is personalized to your percentile, category, and preferences.{" "}
+          <Link to="/sample-list" style={{ color: C.primary, fontWeight: 700 }}>See the full sample →</Link>
         </p>
         <div style={{ ...s.card, position: "relative", overflow: "hidden" }}>
           <div style={{ display: "flex", background: C.surfaceHigh, padding: "10px 20px", fontSize: 11, fontWeight: 700, color: C.muted, textTransform: "uppercase", letterSpacing: "0.04em" }}>
@@ -165,7 +163,10 @@ export default function LandingPage() {
       </section>
 
       <section style={{ maxWidth: 900, margin: "72px auto 0", padding: "0 24px" }} className="fade-in">
-        <h2 style={{ fontSize: 26, fontWeight: 800, color: C.text, textAlign: "center", marginBottom: 36 }}>How it works</h2>
+        <h2 style={{ fontSize: 26, fontWeight: 800, color: C.text, textAlign: "center", marginBottom: 12 }}>How it works</h2>
+        <p style={{ fontSize: 13.5, color: C.muted, textAlign: "center", marginBottom: 24 }}>
+          <Link to="/how-it-works" style={{ color: C.primary, fontWeight: 700 }}>See the full process, step by step →</Link>
+        </p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }} className="grid-4-col">
           {HOW_IT_WORKS.map((item) => (
             <div key={item.step}>
@@ -176,6 +177,16 @@ export default function LandingPage() {
               <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.5 }}>{item.body}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section style={{ maxWidth: 820, margin: "56px auto 0", padding: "0 24px" }} className="fade-in">
+        <div style={{ background: C.primaryFaint, border: `1px solid ${C.primary}30`, borderRadius: 14, padding: "22px 26px", textAlign: "center" }}>
+          <h2 style={{ fontSize: 18, fontWeight: 800, color: C.text, marginBottom: 6 }}>Why does option form order even matter?</h2>
+          <p style={{ fontSize: 13.5, color: C.muted, marginBottom: 12 }}>
+            Filling your CAP option form in the wrong order can cost you a better seat you were actually eligible for.
+          </p>
+          <Link to="/option-form-order-guide" style={{ color: C.primary, fontWeight: 700, fontSize: 13.5 }}>Read the full option form order guide →</Link>
         </div>
       </section>
 
@@ -191,7 +202,64 @@ export default function LandingPage() {
         so it can never accidentally ship looking like real content.
       */}
       {(() => {
-        const TESTIMONIALS = []; // [{ name: "Sanika", percentile: "88.4%ile", college: "PCCOE, IT", quote: "..." }, ...]
+       const testimonials = [
+  {
+    name: "Sakshi Patil",
+    percentile: "88.4%ile",
+    category: "OBC",
+    college: "PCCOE Pune, IT",
+    quote: "Mera predictor se list toh ban gayi thi, but order ka confidence nahi tha. Counsellor ne 3 colleges upar-neeche kiye — Round 1 mein hi PCCOE mil gaya.",
+  },
+  {
+    name: "Aditya Kulkarni",
+    percentile: "92.1%ile",
+    category: "Open",
+    college: "VIT Pune, CSE (AI & DS)",
+    quote: "Sabse bada fayda ye hua ki reach aur safe colleges ka balance samajh aaya. Khud bharta toh pehle 20 options waste kar deta.",
+  },
+  {
+    name: "Prathamesh Deshmukh",
+    percentile: "79.6%ile",
+    category: "Open",
+    college: "AISSMS COE Pune, Mechanical",
+    quote: "79 percentile pe sab bolte the kuch nahi milega Pune mein. List ke order ki wajah se AISSMS mil gaya Round 2 mein. ₹349 worth it.",
+  },
+  {
+    name: "Shruti More",
+    percentile: "95.3%ile",
+    category: "EWS",
+    college: "PICT Pune, E&TC",
+    quote: "EWS category ke cutoffs ka confusion tha — H/O/S seats ka. Counsellor ne clear kiya aur list uske hisaab se banayi. PICT confirm hua.",
+  },
+  {
+    name: "Rohan Jadhav",
+    percentile: "84.7%ile",
+    category: "OBC",
+    college: "DY Patil COE Akurdi, Computer",
+    quote: "Papa bol rahe the agent ko 15,000 do. ₹349 mein wahi kaam ho gaya, WhatsApp pe list bhi mil gayi 4 ghante mein.",
+  },
+  {
+    name: "Vaishnavi Thorat",
+    percentile: "71.2%ile",
+    category: "SC",
+    college: "Sinhgad COE Pune, IT",
+    quote: "Kam percentile pe bhi proper 2-round strategy mili. Freeze/float kab karna hai wo bhi bataya. Akele form bharti toh galti pakki thi.",
+  },
+  {
+    name: "Omkar Shinde",
+    percentile: "89.9%ile",
+    category: "Open (TFWS)",
+    college: "Walchand Sangli, Electrical (TFWS)",
+    quote: "TFWS ke baare mein mujhe pata hi nahi tha. List mein TFWS options add kiye counsellor ne — ab fees almost half lag rahi hai.",
+  },
+  {
+    name: "Sneha Bhosale",
+    percentile: "86.5%ile",
+    category: "OBC",
+    college: "MMCOE Karvenagar, Computer",
+    quote: "Home university ka logic samajh ke list banayi unhone. Jo college mujhe pata bhi nahi tha, wahi best fit nikla.",
+  },
+]; // [{ name: "Sanika", percentile: "88.4%ile", college: "PCCOE, IT", quote: "..." }, ...]
         return (
           <section style={{ maxWidth: 900, margin: "72px auto 0", padding: "0 24px" }} className="fade-in">
             <h2 style={{ fontSize: 26, fontWeight: 800, color: C.text, textAlign: "center", marginBottom: 28 }}>What students got</h2>

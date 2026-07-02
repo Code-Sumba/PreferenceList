@@ -1,5 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import LandingPage from "./components/pages/LandingPage";
+import HowItWorksPage from "./components/pages/HowItWorksPage";
+import SampleListPage from "./components/pages/SampleListPage";
+import OptionFormOrderGuidePage from "./components/pages/OptionFormOrderGuidePage";
+import AboutPage from "./components/pages/AboutPage";
 import InfoFormPage from "./components/pages/InfoFormPage";
 import PaymentPage from "./components/pages/PaymentPage";
 import ToolPage from "./components/pages/ToolPage";
@@ -23,6 +27,10 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/how-it-works" element={<HowItWorksPage />} />
+      <Route path="/sample-list" element={<SampleListPage />} />
+      <Route path="/option-form-order-guide" element={<OptionFormOrderGuidePage />} />
+      <Route path="/about" element={<AboutPage />} />
       <Route path="/apply" element={<InfoFormPage />} />
       <Route path="/login" element={<StudentLoginPage />} />
       <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />

@@ -9,6 +9,9 @@ import { createOrder } from "../../api";
 import { loadRazorpayScript, openRazorpayCheckout } from "../../utils/razorpay";
 import { getPendingForm } from "../../utils/pendingForm";
 import { trackPurchase } from "../../utils/tracking";
+import { whatsappShareUrl } from "../../config/whatsapp";
+
+const REFERRAL_MESSAGE = "I just got my MHT-CET preference list counsellor-reviewed by MindzSpark — worth it before filling your CAP form. Check it out: https://collegelist.mindzspark.in";
 
 export default function PaymentPage() {
   const { brand, C, s } = useBrand();
@@ -16,6 +19,7 @@ export default function PaymentPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [paying, setPaying] = useState(false);
+  const [justPaid, setJustPaid] = useState(false);
 
   // Falls back to the logged-in student's own profile (name/email) when
   // there's no pendingForm — a RETURNING student logging in via /login to
@@ -36,7 +40,8 @@ export default function PaymentPage() {
         amountInr: parseFloat(searchParams.get("amount_inr")) || 349,
       });
       toast.success("Payment successful! You have 2 more credits.");
-      navigate("/tool", { replace: true });
+      setSearchParams({}, { replace: true });
+      setJustPaid(true);
     } else if (status === "failed") {
       toast.error("Payment failed. Please try again.");
       setSearchParams({}, { replace: true });
@@ -46,6 +51,36 @@ export default function PaymentPage() {
 
   if (!student) return <Navigate to="/login" replace />;
   if (!pendingForm) return <Navigate to="/apply" replace />;
+
+  if (justPaid) {
+    return (
+      <AppLayout showCredits={false}>
+        <div style={{ maxWidth: 420, margin: "40px auto" }} className="fade-in">
+          <div style={s.priceCard} className="price-card">
+            <div style={{ textAlign: "center", marginBottom: 22 }}>
+              <div style={{ fontSize: 40, marginBottom: 8 }}>✅</div>
+              <div style={{ fontSize: 18, fontWeight: 800, color: C.text }}>Payment successful!</div>
+              <div style={{ fontSize: 13, color: C.muted, marginTop: 6 }}>You have 2 credits — enough for two counsellor-reviewed lists.</div>
+            </div>
+            <div style={{ background: C.surfaceHigh, borderRadius: 10, padding: 16, marginBottom: 20, textAlign: "center" }}>
+              <div style={{ fontSize: 13, color: C.text, fontWeight: 600, marginBottom: 10 }}>Know a friend also filling their CAP form?</div>
+              <a
+                href={whatsappShareUrl(REFERRAL_MESSAGE)}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...s.btnGhost, display: "inline-block", padding: "9px 20px", fontSize: 13, textDecoration: "none" }}
+              >
+                Share on WhatsApp →
+              </a>
+            </div>
+            <button onClick={() => navigate("/tool", { replace: true })} style={{ ...s.btnPrimary, width: "100%", padding: 14, fontSize: 15 }} className="btn-primary">
+              Continue to My List
+            </button>
+          </div>
+        </div>
+      </AppLayout>
+    );
+  }
 
   const handlePay = async () => {
     setPaying(true);
