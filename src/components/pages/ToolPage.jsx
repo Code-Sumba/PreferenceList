@@ -5,7 +5,8 @@ import { useCredits } from "../../hooks/useCredits";
 import { AppLayout } from "../layout/AppLayout";
 import { Spinner } from "../ui";
 import { ListWorkspace } from "./ListWorkspace";
-import { getEngineOptions, getMyReviews, downloadMyReviewFile } from "../../api";
+import { DashboardListRow } from "./DashboardListRow";
+import { getEngineOptions, getMyReviews } from "../../api";
 import { getPendingForm } from "../../utils/pendingForm";
 
 export default function ToolPage() {
@@ -75,20 +76,7 @@ export default function ToolPage() {
             ) : (
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {reviews.map((r) => (
-                  <div key={r.id} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "10px 14px", background: C.surfaceHigh, borderRadius: 8 }}>
-                    <div>
-                      <div style={{ fontSize: 13, fontWeight: 600, color: C.text }}>Submitted {new Date(r.submitted_at).toLocaleString()}</div>
-                      <div style={{ fontSize: 11, color: r.status === "approved" ? C.emerald : C.amber, fontWeight: 700, marginTop: 2 }}>
-                        {r.status === "approved" ? "Approved" : "Under review"}
-                      </div>
-                    </div>
-                    {r.status === "approved" && (
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                        <button onClick={() => downloadMyReviewFile(r.id, "pdf")} style={{ ...s.btnPrimary, padding: "7px 14px", fontSize: 12 }} className="btn-primary">PDF</button>
-                        <button onClick={() => downloadMyReviewFile(r.id, "excel")} style={{ ...s.btnGhost, padding: "7px 14px", fontSize: 12 }}>Excel</button>
-                      </div>
-                    )}
-                  </div>
+                  <DashboardListRow key={r.id} review={r} onChanged={loadReviews} />
                 ))}
               </div>
             )}

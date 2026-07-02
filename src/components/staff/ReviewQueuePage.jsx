@@ -51,7 +51,7 @@ export default function ReviewQueuePage() {
               <div>
                 <div style={{ fontWeight: 700, fontSize: 14, color: C.text }}>{r.student_name || r.student_email}</div>
                 <div style={{ fontSize: 12, color: C.muted, marginTop: 2 }}>
-                  {r.total_colleges} colleges · percentile {r.percentile ?? "—"} · submitted {new Date(r.submitted_at).toLocaleString()}
+                  {r.total_colleges} colleges · percentile {r.percentile ?? "—"} · for CAP round {r.round ?? "—"} · submitted {new Date(r.submitted_at).toLocaleString()}
                 </div>
               </div>
               <div style={{ display: "flex", gap: 8 }}>

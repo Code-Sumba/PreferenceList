@@ -106,7 +106,7 @@ export default function ReviewDetailPage() {
         <div>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: C.text }}>{review.student_name || review.student_email}</h2>
           <p style={{ fontSize: 13, color: C.muted, marginTop: 4 }}>
-            Percentile {review.percentile ?? "—"} · Rank {review.rank ?? "—"} · {review.total_colleges} colleges
+            Percentile {review.percentile ?? "—"} · Rank {review.rank ?? "—"} · For CAP Round {review.round ?? "—"} · {review.total_colleges} colleges
           </p>
         </div>
         <div style={{ display: "flex", gap: 8 }}>

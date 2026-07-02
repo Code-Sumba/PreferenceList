@@ -26,7 +26,6 @@ export function ListWorkspace({ slotLabel, initialForm, branchNameToId, credits,
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("idle"); // idle | submitting | pending_review | approved
   const [reviewId, setReviewId] = useState(null);
-  const [collegeCount, setCollegeCount] = useState(0);
   const pollRef = useRef(null);
 
   useEffect(() => {
@@ -109,6 +108,9 @@ export function ListWorkspace({ slotLabel, initialForm, branchNameToId, credits,
         preferred_cities: form.preferred_cities || [],
         preferred_branches: form.preferred_branches || [],
         cutoff_year: ENGINE_YEAR,
+        // Shown to staff so they know which CAP round the student wants this
+        // list for — it does NOT change generation (target_round stays 1).
+        cutoff_round: parseInt(form.cap_round || "1", 10),
       };
       const exportList = ranked.map((c) => ({
         sr_no: c.sr_no,
@@ -126,7 +128,6 @@ export function ListWorkspace({ slotLabel, initialForm, branchNameToId, credits,
 
       const { review_id, status: st } = await submitReview(formData, exportList);
       setReviewId(review_id);
-      setCollegeCount(ranked.length);
       setStatus(st);
       toast.success(`${slotLabel}: submitted for review!`);
     } catch (e) {
@@ -170,6 +171,14 @@ export function ListWorkspace({ slotLabel, initialForm, branchNameToId, credits,
                 <option value="aggressive">Aggressive</option>
               </select>
             </div>
+            <div>
+              <label style={s.label}>CAP Round</label>
+              <select style={s.input} value={form.cap_round || "1"} onChange={set("cap_round")}>
+                <option value="1">Round 1</option>
+                <option value="2">Round 2</option>
+                <option value="3">Round 3</option>
+              </select>
+            </div>
             <div style={{ gridColumn: "1 / -1" }}>
               <button onClick={handleGenerateAndSubmit} disabled={credits <= 0} style={{ ...s.btnPrimary, width: "100%", padding: 12, opacity: credits <= 0 ? 0.6 : 1 }} className="btn-primary">
                 {credits <= 0 ? "No credits remaining" : "Generate List (uses 1 credit)"}
@@ -188,7 +197,7 @@ export function ListWorkspace({ slotLabel, initialForm, branchNameToId, credits,
         {status === "pending_review" && (
           <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 10, padding: 20, textAlign: "center" }}>
             <p style={{ fontSize: 13, color: "#92400e", fontWeight: 600 }}>
-              {collegeCount > 0 ? `${collegeCount} colleges compiled — ` : ""}Our counselling team is reviewing your list.
+              Our counselling team is reviewing your list.
             </p>
             <p style={{ fontSize: 12, color: "#92400e", marginTop: 4 }}>You'll get an email the moment it's approved.</p>
           </div>
