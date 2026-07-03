@@ -32,7 +32,12 @@ export function getTheme(brand) {
 
     text: "#111827",
     muted: "#6b7280",
-    faint: "#9ca3af",
+    // Was #9ca3af (~2.5:1 on white/surfaceHigh — fails WCAG AA). Muted
+    // itself is already near the lightest gray that clears 4.5:1 on both
+    // backgrounds this app uses, so there's no lighter tone left for
+    // "faint" to occupy — this is intentionally close to muted rather
+    // than lighter.
+    faint: "#646d78",
 
     emerald: "#16a34a",
     amber: "#d97706",

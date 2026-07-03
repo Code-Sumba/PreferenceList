@@ -29,7 +29,23 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+    <!-- Non-render-blocking font load: request at high priority via preload,
+         apply once loaded by flipping media from "print" to "all". noscript
+         covers the no-JS case. -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" />
+    </noscript>
 
     <!-- Structured data: Organization + Service + FAQPage — read directly from
          the raw HTML by crawlers, so this is reliable even before/without
@@ -123,16 +139,15 @@
     }
     </script>
 
-    <!-- Google Analytics 4 (gtag.js) — REPLACE G-XXXXXXXXXX with your real
-         GA4 Measurement ID before launch. The purchase conversion event
-         itself fires from PaymentPage.jsx on payment success, not here —
-         this just loads the base tracking + pageviews. -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Analytics 4 (gtag.js). The purchase conversion event itself
+         fires from PaymentPage.jsx on payment success, not here — this just
+         loads the base tracking + pageviews. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFF1NZBJJ6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){ dataLayer.push(arguments); }
       gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX'); // TODO: replace with real GA4 Measurement ID
+      gtag('config', 'G-YFF1NZBJJ6');
     </script>
 
     <!-- Meta (Facebook) Pixel — REPLACE YOUR_PIXEL_ID with your real Pixel ID. -->

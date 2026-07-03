@@ -1,0 +1,1 @@
+const t="mspub_pending_form";function e(){try{const n=sessionStorage.getItem(t);return n?JSON.parse(n):null}catch{return null}}function s(n){sessionStorage.setItem(t,JSON.stringify(n))}export{e as g,s};

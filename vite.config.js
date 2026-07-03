@@ -3,6 +3,11 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  build: {
+    // No IE11/legacy-browser support needed, so target modern evergreen
+    // browsers directly and skip esbuild's down-level transforms/polyfills.
+    target: "es2020",
+  },
   server: {
     port: 5174,
     // Same-origin-via-proxy in dev (mirrors frontend/vite.config.js) so the
