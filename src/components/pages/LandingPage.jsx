@@ -202,7 +202,7 @@ export default function LandingPage() {
         so it can never accidentally ship looking like real content.
       */}
       {(() => {
-       const testimonials = [
+       const TESTIMONIALS = [
   {
     name: "Sakshi Patil",
     percentile: "88.4%ile",
