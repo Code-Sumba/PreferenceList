@@ -37,7 +37,8 @@ export default function HowItWorksPage() {
 
   useDocumentMeta(
     "How the MHT-CET Preference List Is Made — Percentile to Counsellor-Approved List | MindzSpark",
-    "See exactly how MindzSpark turns your MHT-CET percentile and rank into a counsellor-reviewed CAP preference list, step by step, in under 6 hours."
+    "See exactly how MindzSpark turns your MHT-CET percentile and rank into a counsellor-reviewed CAP preference list, step by step, in under 6 hours.",
+    "/how-it-works"
   );
 
   return (

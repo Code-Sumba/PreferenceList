@@ -10,7 +10,8 @@ export default function SampleListPage() {
 
   useDocumentMeta(
     "MHT-CET Preference List Sample — What a Counsellor-Reviewed List Looks Like | MindzSpark",
-    "See a real MHT-CET preference list sample built from published 2025 cutoff data — college, branch, and cutoff percentile, the same format every counsellor-reviewed list uses."
+    "See a real MHT-CET preference list sample built from published 2025 cutoff data — college, branch, and cutoff percentile, the same format every counsellor-reviewed list uses.",
+    "/sample-list"
   );
 
   return (

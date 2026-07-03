@@ -10,7 +10,8 @@ export default function AboutPage() {
 
   useDocumentMeta(
     "About MindzSpark — Who Reviews Your MHT-CET Preference List",
-    "MindzSpark's counsellor-reviewed MHT-CET preference list service: who builds and checks your list, and how the review process actually works."
+    "MindzSpark's counsellor-reviewed MHT-CET preference list service: who builds and checks your list, and how the review process actually works.",
+    "/about"
   );
 
   return (

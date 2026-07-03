@@ -44,7 +44,8 @@ export default function LandingPage() {
 
   useDocumentMeta(
     "MHT-CET Preference List 2026 — Counsellor-Reviewed CAP Option Form Order | ₹349",
-    "Get a counsellor-reviewed 2026 MHT-CET preference list built from your exact percentile and rank. Two personalized CAP round lists for ₹349."
+    "Get a counsellor-reviewed 2026 MHT-CET preference list built from your exact percentile and rank. Two personalized CAP round lists for ₹349.",
+    "/"
   );
 
   return (

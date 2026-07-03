@@ -23,7 +23,8 @@ export default function InfoFormPage() {
 
   useDocumentMeta(
     "Get Your MHT-CET Preference List — Enter Percentile & Rank | MindzSpark",
-    "Enter your MHT-CET percentile, rank, category, and preferred colleges to get a counsellor-reviewed CAP round preference list."
+    "Enter your MHT-CET percentile, rank, category, and preferred colleges to get a counsellor-reviewed CAP round preference list.",
+    "/apply"
   );
 
   const [opts, setOpts] = useState({ cities: [], branches: [] });

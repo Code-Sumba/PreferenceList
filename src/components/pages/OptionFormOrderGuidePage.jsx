@@ -38,7 +38,8 @@ export default function OptionFormOrderGuidePage() {
 
   useDocumentMeta(
     "MHT-CET CAP Option Form Order Guide 2026 — Kis Order Mein Bhare | MindzSpark",
-    "Confused about what order to fill your MHT-CET CAP option form in? Here's why order matters, the strategy behind it, and how to avoid losing a seat you were eligible for."
+    "Confused about what order to fill your MHT-CET CAP option form in? Here's why order matters, the strategy behind it, and how to avoid losing a seat you were eligible for.",
+    "/option-form-order-guide"
   );
 
   useJsonLd("howto-schema", {

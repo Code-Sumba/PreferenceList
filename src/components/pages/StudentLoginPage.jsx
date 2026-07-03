@@ -20,7 +20,8 @@ export default function StudentLoginPage() {
 
   useDocumentMeta(
     "Log In | MindzSpark MHT-CET Preference List",
-    "Log in to view your MHT-CET preference list status, download an approved list, or buy more credits."
+    "Log in to view your MHT-CET preference list status, download an approved list, or buy more credits.",
+    "/login"
   );
 
   const [step, setStep] = useState(0); // 0 = email, 1 = otp
