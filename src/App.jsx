@@ -8,6 +8,7 @@ import { AdminProtectedRoute } from "./routes/AdminProtectedRoute";
 // Everything except the landing page is lazy-loaded: most visitors only ever
 // see "/", so the public marketing pages, the authed student flow, and the
 // staff/admin panel shouldn't cost that visitor any bytes.
+const CapRoundLiveUpdatesPage = lazy(() => import("./components/pages/CapRoundLiveUpdatesPage"));
 const HowItWorksPage = lazy(() => import("./components/pages/HowItWorksPage"));
 const SampleListPage = lazy(() => import("./components/pages/SampleListPage"));
 const OptionFormOrderGuidePage = lazy(() => import("./components/pages/OptionFormOrderGuidePage"));
@@ -33,6 +34,7 @@ export default function App() {
     <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/cap-round-2026" element={<CapRoundLiveUpdatesPage />} />
         <Route path="/how-it-works" element={<HowItWorksPage />} />
         <Route path="/sample-list" element={<SampleListPage />} />
         <Route path="/option-form-order-guide" element={<OptionFormOrderGuidePage />} />

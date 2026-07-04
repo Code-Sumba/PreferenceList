@@ -53,6 +53,12 @@ export default function LandingPage() {
       { label: "Log In", onClick: () => navigate("/login") },
       { label: "Get My List", primary: true, onClick: () => navigate("/apply") },
     ]}>
+      <Link
+        to="/cap-round-2026"
+        style={{ display: "block", background: C.primary, color: "#fff", textAlign: "center", padding: "10px 16px", fontSize: 13.5, fontWeight: 700, textDecoration: "none" }}
+      >
+        🔴 CAP Round 2026 is live — see the full schedule & today's update →
+      </Link>
       <div style={s.hero} className="fade-in hero-section">
         <div style={{ display: "inline-block", background: C.primaryFaint, color: C.primary, fontSize: 12, fontWeight: 700, borderRadius: 20, padding: "6px 16px", marginBottom: 20 }}>
           {brand.tagline || "MHT-CET Counselling Excellence"}
