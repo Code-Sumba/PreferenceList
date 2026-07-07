@@ -91,7 +91,7 @@ export default function OptionFormOrderGuidePage() {
         <div style={{ background: C.primaryFaint, border: `1px solid ${C.primary}30`, borderRadius: 14, padding: "26px 28px", textAlign: "center" }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, color: C.text, marginBottom: 8 }}>Don't guess your own order — get it reviewed</h2>
           <p style={{ fontSize: 13.5, color: C.muted, marginBottom: 16 }}>
-            For ₹349, MindzSpark generates two personalized CAP round lists from your exact percentile, rank, and preferences, then a real counsellor reviews and corrects the order before you see it — approved within 6 hours.
+            For ₹349, MindzSpark generates a personalized CAP round list from your exact percentile, rank, and preferences, then a real counsellor reviews and corrects the order before you see it — approved within 6 hours.
           </p>
           <button onClick={() => navigate("/apply")} style={{ ...s.btnPrimary, padding: "13px 32px", fontSize: 14.5 }} className="btn-primary">
             Get My Reviewed List — ₹349

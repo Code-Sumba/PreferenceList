@@ -41,7 +41,7 @@ export function openRazorpayCheckout({ order, brandName, prefill, onDismiss }) {
     currency: order.currency,
     order_id: order.order_id,
     name: brandName || "MindzSpark",
-    description: "MHT-CET Preference List — 2 lists",
+    description: "MHT-CET Preference List",
     prefill,
     theme: { color: prefill?.themeColor || "#2563eb" },
     callback_url: `${window.location.origin}/api/client/payments/callback`,

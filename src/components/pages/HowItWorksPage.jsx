@@ -12,7 +12,7 @@ const STEPS = [
   {
     step: "2",
     title: "Pay ₹349, one time",
-    body: "One payment covers two full preference lists — enough for two separate CAP rounds. Not a subscription, not a per-college charge.",
+    body: "One payment covers one complete preference list. Not a subscription, not a per-college charge.",
   },
   {
     step: "3",

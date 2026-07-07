@@ -9,13 +9,14 @@
 // rendering the college rows to the student. Drag-and-drop reorder and
 // "add college" for THIS raw list now happen only on the staff side
 // (client/src/components/staff/ReviewDetailPage.jsx, which reuses the same
-// CollegeCard/AddCollegePanel components). The student only sees content
+// CollegeCard /AddCollegePanel components). The student only sees content
 // again once a counsellor has approved it (PDF/Excel download).
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useBrand } from "../../contexts/BrandContext";
 import { Spinner } from "../ui";
 import { generatePreferences, getMyReviews, submitReview, downloadMyReviewFile } from "../../api";
+import { whatsappChatUrl } from "../../config/whatsapp";
 
 const ENGINE_YEAR = 2026;
 const POLL_MS = 30000;
@@ -67,6 +68,12 @@ export function ListWorkspace({ slotLabel, initialForm, branchNameToId, credits,
         category: form.category_label,
         seat_type: form.seat_type,
         gender: form.gender,
+        home_university_code: form.home_university_code || "",
+        special_category: form.special_category || "",
+        linguistic_minority: !!form.linguistic_minority,
+        religious_minority: !!form.religious_minority,
+        applying_tfws: !!form.applying_tfws,
+        college_type_preference: form.college_autonomy_pref || "ANY",
         branch_preferences: branchPrefs,
         preferred_cities: (form.preferred_cities || []).filter(Boolean),
         risk_profile: form.risk_profile,
@@ -107,6 +114,16 @@ export function ListWorkspace({ slotLabel, initialForm, branchNameToId, credits,
         mobile: form.mobile || null,
         preferred_cities: form.preferred_cities || [],
         preferred_branches: form.preferred_branches || [],
+        district: form.district || null,
+        home_university_code: form.home_university_code || null,
+        jee_percentile: form.jee_percentile ? parseFloat(form.jee_percentile) : null,
+        special_category: form.special_category || null,
+        linguistic_minority: !!form.linguistic_minority,
+        religious_minority: !!form.religious_minority,
+        applying_tfws: !!form.applying_tfws,
+        college_autonomy_pref: form.college_autonomy_pref || null,
+        preferred_degree: form.preferred_degree || null,
+        additional_notes: form.additional_notes || null,
         cutoff_year: ENGINE_YEAR,
         // Shown to staff so they know which CAP round the student wants this
         // list for — it does NOT change generation (target_round stays 1).
@@ -200,6 +217,14 @@ export function ListWorkspace({ slotLabel, initialForm, branchNameToId, credits,
               Our counselling team is reviewing your list.
             </p>
             <p style={{ fontSize: 12, color: "#92400e", marginTop: 4 }}>You'll get an email the moment it's approved.</p>
+            <a
+              href={whatsappChatUrl(`Hi, I've just applied for my MHT-CET preference list. Name: ${form.student_name}, Percentile: ${form.percentile}.`)}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ ...s.btnGhost, display: "inline-block", marginTop: 14, padding: "9px 20px", fontSize: 13, textDecoration: "none" }}
+            >
+              Let us know on WhatsApp →
+            </a>
           </div>
         )}
 

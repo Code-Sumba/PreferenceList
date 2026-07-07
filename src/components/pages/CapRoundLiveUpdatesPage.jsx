@@ -214,7 +214,7 @@ export default function CapRoundLiveUpdatesPage() {
         <div style={{ background: C.primaryFaint, border: `1px solid ${C.primary}30`, borderRadius: 14, padding: "26px 28px", textAlign: "center" }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, color: C.text, marginBottom: 8 }}>Don't leave your preference list for the last day</h2>
           <p style={{ fontSize: 13.5, color: C.muted, marginBottom: 16 }}>
-            Once the merit list is out, CAP round deadlines move fast. Get your counsellor-reviewed list ready in advance — ₹349 for two personalized CAP round lists, approved within 6 hours.
+            Once the merit list is out, CAP round deadlines move fast. Get your counsellor-reviewed list ready in advance — ₹349 for a personalized CAP round list, approved within 6 hours.
           </p>
           <button onClick={() => navigate("/apply")} style={{ ...s.btnPrimary, padding: "13px 32px", fontSize: 14.5 }} className="btn-primary">
             Get My Preference List — ₹349

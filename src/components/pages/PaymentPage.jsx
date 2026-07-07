@@ -39,7 +39,7 @@ export default function PaymentPage() {
         orderId: searchParams.get("order_id") || "",
         amountInr: parseFloat(searchParams.get("amount_inr")) || 349,
       });
-      toast.success("Payment successful! You have 2 more credits.");
+      toast.success("Payment successful! You have 1 more credit.");
       setSearchParams({}, { replace: true });
       setJustPaid(true);
     } else if (status === "failed") {
@@ -60,7 +60,7 @@ export default function PaymentPage() {
             <div style={{ textAlign: "center", marginBottom: 22 }}>
               <div style={{ fontSize: 40, marginBottom: 8 }}>✅</div>
               <div style={{ fontSize: 18, fontWeight: 800, color: C.text }}>Payment successful!</div>
-              <div style={{ fontSize: 13, color: C.muted, marginTop: 6 }}>You have 2 credits — enough for two counsellor-reviewed lists.</div>
+              <div style={{ fontSize: 13, color: C.muted, marginTop: 6 }}>You have 1 credit — enough for one counsellor-reviewed list.</div>
             </div>
             <div style={{ background: C.surfaceHigh, borderRadius: 10, padding: 16, marginBottom: 20, textAlign: "center" }}>
               <div style={{ fontSize: 13, color: C.text, fontWeight: 600, marginBottom: 10 }}>Know a friend also filling their CAP form?</div>
@@ -119,7 +119,7 @@ export default function PaymentPage() {
           <div style={{ textAlign: "center", marginBottom: 20 }}>
             <div style={{ fontSize: 13, color: C.muted, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em" }}>Order Summary</div>
             <div style={{ fontSize: 44, fontWeight: 900, color: C.text, marginTop: 6 }}>₹349</div>
-            <div style={{ fontSize: 13, color: C.muted, marginTop: 4 }}>2 preference lists · reviewed by our team</div>
+            <div style={{ fontSize: 13, color: C.muted, marginTop: 4 }}>1 preference list · reviewed by our team</div>
           </div>
           <div style={{ background: C.surfaceHigh, borderRadius: 10, padding: 14, marginBottom: 20, fontSize: 13, color: C.muted }}>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "2px 8px", marginBottom: 6 }}>

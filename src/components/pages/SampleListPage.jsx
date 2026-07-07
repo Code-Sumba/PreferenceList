@@ -59,7 +59,7 @@ export default function SampleListPage() {
               "Ranked against your own percentile, category, and seat type — not GOPENS Pune Computer Engineering.",
               "Includes your preferred cities and branches, spread across realistic reach/match/safe options.",
               "Reviewed and adjusted by a real counsellor before it's finalized — this sample is not counsellor-reviewed, it's an illustration.",
-              "Delivered as two separate lists, one per CAP round.",
+              "Delivered as one complete list for your CAP round.",
             ].map((f) => (
               <li key={f} style={{ display: "flex", gap: 10, fontSize: 13.5, color: C.text }}>
                 <span style={{ color: C.primary, fontWeight: 900 }}>→</span>{f}

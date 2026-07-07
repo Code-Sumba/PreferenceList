@@ -9,7 +9,7 @@ export function trackPurchase({ orderId, amountInr }) {
         transaction_id: orderId,
         value: amountInr,
         currency: "INR",
-        items: [{ item_name: "MHT-CET Preference List (2 lists)", price: amountInr, quantity: 1 }],
+        items: [{ item_name: "MHT-CET Preference List", price: amountInr, quantity: 1 }],
       });
     }
   } catch { /* tracking must never break the actual payment flow */ }

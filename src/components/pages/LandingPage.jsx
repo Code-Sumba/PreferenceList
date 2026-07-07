@@ -6,7 +6,7 @@ import { SAMPLE_ROWS } from "../../data/sampleCutoffs";
 
 const HOW_IT_WORKS = [
   { step: "1", title: "Enter your details", body: "CET percentile, rank, category, seat type, and your preferred cities and branches." },
-  { step: "2", title: "Pay ₹349", body: "One-time payment covers two full preference lists — not per-college, not per-download." },
+  { step: "2", title: "Pay ₹349", body: "One-time payment covers one complete preference list — not per-college, not per-download." },
   { step: "3", title: "Counsellor review", body: "A real counsellor checks and adjusts your list — colleges, order, everything — before it's finalized." },
   { step: "4", title: "Get your list", body: "Approved within 6 hours. View and download it anytime from your dashboard." },
 ];
@@ -18,7 +18,7 @@ const FAQS = [
   },
   {
     q: "How much does a MHT-CET preference list cost?",
-    a: "₹349 for two personalized, counsellor-reviewed preference lists, covering CAP round admissions across Maharashtra engineering colleges.",
+    a: "₹349 for one personalized, counsellor-reviewed preference list, covering CAP round admissions across Maharashtra engineering colleges.",
   },
   {
     q: "How is the MHT-CET preference list generated?",
@@ -44,7 +44,7 @@ export default function LandingPage() {
 
   useDocumentMeta(
     "MHT-CET Preference List 2026 — Counsellor-Reviewed CAP Option Form Order | ₹349",
-    "Get a counsellor-reviewed 2026 MHT-CET preference list built from your exact percentile and rank. Two personalized CAP round lists for ₹349.",
+    "Get a counsellor-reviewed 2026 MHT-CET preference list built from your exact percentile and rank. One personalized CAP round list for ₹349.",
     "/"
   );
 
@@ -68,7 +68,7 @@ export default function LandingPage() {
         </h1>
         <p style={s.heroSubtitle} className="hero-subtitle">
           Enter your MHT-CET percentile, rank, and preferences, and our counselling team will hand-review
-          and finalize two personalized CAP round preference lists for you — approved within 6 hours.
+          and finalize a personalized CAP round preference list for you — approved within 6 hours.
         </p>
         <button onClick={() => navigate("/apply")} style={{ ...s.btnPrimary, padding: "14px 36px", fontSize: 15 }} className="btn-primary">
           Get My Preference List →
@@ -96,7 +96,7 @@ export default function LandingPage() {
           <div style={{ fontSize: 20, color: C.faint, fontWeight: 900 }}>→</div>
           <div style={{ flex: "1 1 260px" }}>
             <div style={{ fontSize: 11, fontWeight: 800, color: C.primary, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 4 }}>This List — ₹349</div>
-            <div style={{ fontSize: 14, color: C.text }}>Tells you exactly <strong>what order</strong> to fill your CAP form in — counsellor-verified, 2 CAP rounds.</div>
+            <div style={{ fontSize: 14, color: C.text }}>Tells you exactly <strong>what order</strong> to fill your CAP form in — counsellor-verified.</div>
           </div>
         </div>
       </div>
@@ -105,11 +105,11 @@ export default function LandingPage() {
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           <div style={{ fontSize: 13, color: C.muted, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em" }}>One-time payment</div>
           <div style={{ fontSize: 44, fontWeight: 900, color: C.text, marginTop: 6 }}>₹349</div>
-          <div style={{ fontSize: 13, color: C.muted, marginTop: 4 }}>for 2 personalized lists</div>
+          <div style={{ fontSize: 13, color: C.muted, marginTop: 4 }}>for 1 personalized list</div>
         </div>
         <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 12, marginBottom: 24 }}>
           {[
-            "2 college preference lists, your choice of inputs",
+            "1 college preference list, your choice of inputs",
             "Drag-and-drop reordering + add any college manually",
             "Reviewed and finalized by our counselling team",
             "Approved within 6 hours",

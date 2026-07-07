@@ -51,15 +51,14 @@ export default function ToolPage() {
           <span style={{ fontSize: 14, color: C.text, fontWeight: 600 }}>
             {balance === null ? "Loading credits…" : `Credits remaining: ${balance}`}
           </span>
-          {balance === 0 && <span style={{ fontSize: 12, color: C.amber, fontWeight: 700 }}>Both lists used</span>}
+          {balance === 0 && <span style={{ fontSize: 12, color: C.amber, fontWeight: 700 }}>Your list has been used</span>}
         </div>
 
         {!optsLoaded ? (
           <div style={{ textAlign: "center", padding: 60 }}><Spinner size={28} /></div>
         ) : (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="grid-2-col">
-            <ListWorkspace slotLabel="List 1" initialForm={pendingForm} branchNameToId={branchNameToId} credits={balance ?? 0} onCreditsChange={onCreditsChange} />
-            <ListWorkspace slotLabel="List 2" initialForm={pendingForm} branchNameToId={branchNameToId} credits={balance ?? 0} onCreditsChange={onCreditsChange} />
+          <div style={{ maxWidth: 560, margin: "0 auto" }}>
+            <ListWorkspace slotLabel="Your List" initialForm={pendingForm} branchNameToId={branchNameToId} credits={balance ?? 0} onCreditsChange={onCreditsChange} />
           </div>
         )}
 
