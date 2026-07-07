@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/react";
 import App from "./App.jsx";
 import { GLOBAL_CSS } from "./utils/theme.js";
 import { BrandProvider } from "./contexts/BrandContext.jsx";
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <AuthProvider>
           <App />
           <Toaster position="top-center" />
+          <Analytics />
         </AuthProvider>
       </BrandProvider>
     </BrowserRouter>
