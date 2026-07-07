@@ -106,6 +106,14 @@ export const GLOBAL_CSS = `
     .grid-2-col { grid-template-columns: 1fr !important; }
     .grid-4-col { grid-template-columns: 1fr 1fr !important; gap: 20px 14px !important; }
 
+    /* Step indicator: hide per-step text labels (they force horizontal
+       overflow past ~4 steps) and shrink the circles into a compact dot
+       row; the current step's full name is shown as its own line instead. */
+    .step-current-label { display: block !important; }
+    .step-bar .step-label { display: none !important; }
+    .step-circle { width: 22px !important; height: 22px !important; font-size: 10px !important; }
+    .step-connector { margin: 0 3px !important; min-width: 4px !important; }
+
     .header-row { flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
     .header-row-actions { display: flex !important; gap: 8px !important; }
     .header-row-actions button { flex: 1 !important; }

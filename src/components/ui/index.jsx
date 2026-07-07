@@ -150,34 +150,47 @@ export function MultiSelect({ label, options = [], selected = [], onChange, plac
 }
 
 // ── Step indicator ────────────────────────────────────────────────────────────
+// On narrow screens, the full row of circle+label per step (esp. with 6-7
+// steps and long labels like "College & Additional Info") doesn't fit and
+// forces horizontal overflow of the whole page. .step-current-label /
+// .step-label / .step-circle / .step-connector are targeted by the
+// @media(max-width:640px) block in theme.js's GLOBAL_CSS to hide the
+// per-step text and shrink circles down to a compact dot-row instead,
+// while still surfacing the current step's name as its own line.
 export function StepBar({ steps, current }) {
   const { C } = useBrand();
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 0, marginBottom: 32 }}>
-      {steps.map((step, i) => {
-        const done = i < current;
-        const active = i === current;
-        return (
-          <div key={i} style={{ display: "flex", alignItems: "center", flex: i < steps.length - 1 ? 1 : "none" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
-              <div style={{
-                width: 32, height: 32, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
-                background: done ? C.emerald : active ? C.primary : "#f1f5f9",
-                border: `2px solid ${done ? C.emerald : active ? C.primary : "#e2e8f0"}`,
-                fontSize: 13, fontWeight: 700, color: (done || active) ? "#fff" : C.faint,
-              }}>
-                {done ? "✓" : i + 1}
+    <div style={{ marginBottom: 32 }}>
+      <div className="step-current-label" style={{ display: "none", fontSize: 13, fontWeight: 700, color: C.text, marginBottom: 14 }}>
+        Step {current + 1} of {steps.length}: {steps[current]}
+      </div>
+      <div className="step-bar" style={{ display: "flex", alignItems: "center", gap: 0 }}>
+        {steps.map((step, i) => {
+          const done = i < current;
+          const active = i === current;
+          return (
+            <div key={i} style={{ display: "flex", alignItems: "center", flex: i < steps.length - 1 ? 1 : "none" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+                <div className="step-circle" style={{
+                  width: 32, height: 32, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
+                  background: done ? C.emerald : active ? C.primary : "#f1f5f9",
+                  border: `2px solid ${done ? C.emerald : active ? C.primary : "#e2e8f0"}`,
+                  fontSize: 13, fontWeight: 700, color: (done || active) ? "#fff" : C.faint,
+                  flexShrink: 0,
+                }}>
+                  {done ? "✓" : i + 1}
+                </div>
+                <span className="step-label" style={{ fontSize: 13, fontWeight: active ? 700 : 500, color: active ? C.text : done ? C.emerald : C.muted, whiteSpace: "nowrap" }}>
+                  {step}
+                </span>
               </div>
-              <span style={{ fontSize: 13, fontWeight: active ? 700 : 500, color: active ? C.text : done ? C.emerald : C.muted, whiteSpace: "nowrap" }}>
-                {step}
-              </span>
+              {i < steps.length - 1 && (
+                <div className="step-connector" style={{ flex: 1, height: 2, background: done ? C.emerald : "#e2e8f0", margin: "0 12px", minWidth: 6 }} />
+              )}
             </div>
-            {i < steps.length - 1 && (
-              <div style={{ flex: 1, height: 2, background: done ? C.emerald : "#e2e8f0", margin: "0 12px" }} />
-            )}
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }
