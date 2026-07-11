@@ -85,6 +85,9 @@ export const listReviews = (status = "pending_review") =>
 
 export const getReview = (id) => api.get(`/api/client/reviews/${id}`).then((r) => r.data);
 
+export const updateReviewStudentName = (id, studentName) =>
+  api.put(`/api/client/reviews/${id}/student-name`, { student_name: studentName }).then((r) => r.data);
+
 export const updateReviewList = (id, orderedList) =>
   api.put(`/api/client/reviews/${id}/list`, { ordered_list: orderedList }).then((r) => r.data);
 

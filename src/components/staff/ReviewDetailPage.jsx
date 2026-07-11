@@ -7,7 +7,7 @@ import { Spinner, Tag } from "../ui";
 import { CollegeCard } from "../college/CollegeCard";
 import { AddCollegePanel } from "../college/AddCollegePanel";
 import { CollegeFilterPanel } from "./CollegeFilterPanel";
-import { approveReview, getReview, updateReviewList } from "../../api";
+import { approveReview, getReview, updateReviewList, updateReviewStudentName } from "../../api";
 
 export default function ReviewDetailPage() {
   const { C, s } = useBrand();
@@ -23,6 +23,9 @@ export default function ReviewDetailPage() {
   const [dragOver, setDragOver] = useState(null);
   const [dirty, setDirty] = useState(false);
   const [filterRange, setFilterRange] = useState(null); // {lo, hi} | null
+  const [editingName, setEditingName] = useState(false);
+  const [nameInput, setNameInput] = useState("");
+  const [savingName, setSavingName] = useState(false);
 
   useEffect(() => {
     getReview(id)
@@ -48,6 +51,24 @@ export default function ReviewDetailPage() {
     setDragFrom(null); setDragOver(null); setDirty(true);
   };
   const handleAdd = (item) => { setColleges((prev) => [...prev, item]); setDirty(true); };
+
+  const startEditName = () => { setNameInput(review.student_name || ""); setEditingName(true); };
+  const cancelEditName = () => setEditingName(false);
+  const handleSaveName = async () => {
+    const trimmed = nameInput.trim();
+    if (!trimmed) return toast.error("Name can't be empty.");
+    setSavingName(true);
+    try {
+      await updateReviewStudentName(id, trimmed);
+      setReview((prev) => ({ ...prev, student_name: trimmed }));
+      setEditingName(false);
+      toast.success("Student name updated.");
+    } catch (e) {
+      toast.error(e.response?.data?.detail || "Failed to update name.");
+    } finally {
+      setSavingName(false);
+    }
+  };
 
   const inRange = (item) => !filterRange || (item.cutoff_percentile >= filterRange.lo && item.cutoff_percentile <= filterRange.hi);
   const indexed = colleges.map((item, idx) => ({ item, idx }));
@@ -104,7 +125,35 @@ export default function ReviewDetailPage() {
 
       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 16 }}>
         <div>
-          <h2 style={{ fontSize: 20, fontWeight: 800, color: C.text }}>{review.student_name || review.student_email}</h2>
+          {editingName ? (
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <input
+                autoFocus
+                style={{ ...s.input, padding: "6px 10px", fontSize: 16, fontWeight: 700, width: 240 }}
+                value={nameInput}
+                onChange={(e) => setNameInput(e.target.value)}
+                onKeyDown={(e) => { if (e.key === "Enter") handleSaveName(); if (e.key === "Escape") cancelEditName(); }}
+                placeholder="Student name"
+              />
+              <button onClick={handleSaveName} disabled={savingName} style={{ ...s.btnPrimary, padding: "6px 12px", fontSize: 12 }}>
+                {savingName ? <Spinner size={14} color="#fff" /> : "Save"}
+              </button>
+              <button onClick={cancelEditName} disabled={savingName} style={{ ...s.btnGhost, padding: "6px 12px", fontSize: 12 }}>
+                Cancel
+              </button>
+            </div>
+          ) : (
+            <h2 style={{ fontSize: 20, fontWeight: 800, color: C.text, display: "flex", alignItems: "center", gap: 10 }}>
+              {review.student_name || review.student_email}
+              <button
+                onClick={startEditName}
+                title="Edit student name"
+                style={{ background: "none", border: `1px solid ${C.border}`, color: C.muted, borderRadius: 6, padding: "2px 10px", fontSize: 11, fontWeight: 600, cursor: "pointer" }}
+              >
+                ✎ Edit name
+              </button>
+            </h2>
+          )}
           <p style={{ fontSize: 13, color: C.muted, marginTop: 4 }}>
             Percentile {review.percentile ?? "—"} · Rank {review.rank ?? "—"} · For CAP Round {review.round ?? "—"} · {review.total_colleges} colleges
           </p>
