@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import LandingPage from "./components/pages/LandingPage";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { StaffProtectedRoute } from "./routes/StaffProtectedRoute";
@@ -32,6 +33,7 @@ const AdminStudentDetailPage = lazy(() => import("./components/staff/AdminStuden
 export default function App() {
   return (
     <Suspense fallback={null}>
+      <Analytics />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/cap-round-2026" element={<CapRoundLiveUpdatesPage />} />
