@@ -1,1 +1,0 @@
-import{a as e,j as t,P as a,E as n}from"./index-DhGKn3WP.js";function s(){const o=e();return t.jsx(a,{children:t.jsx(n,{icon:"🔍",title:"Page not found",subtitle:"The page you're looking for doesn't exist.",action:{label:"Go Home",onClick:()=>o("/")}})})}export{s as default};
