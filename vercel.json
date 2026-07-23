@@ -1,9 +1,9 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://web-production-bd442.up.railway.app/api/:path*" },
-    { "source": "/engine/:path*", "destination": "https://web-production-bd442.up.railway.app/engine/:path*" },
-    { "source": "/admin/:path*", "destination": "https://web-production-bd442.up.railway.app/admin/:path*" },
-    { "source": "/generated_pdfs/:path*", "destination": "https://web-production-bd442.up.railway.app/generated_pdfs/:path*" },
+    { "source": "/api/:path*", "destination": "http://z79hp0oa5ojq2z38ey2pb6y4.200.97.171.63.sslip.io/api/:path*" },
+    { "source": "/engine/:path*", "destination": "http://z79hp0oa5ojq2z38ey2pb6y4.200.97.171.63.sslip.io/engine/:path*" },
+    { "source": "/admin/:path*", "destination": "http://z79hp0oa5ojq2z38ey2pb6y4.200.97.171.63.sslip.io/admin/:path*" },
+    { "source": "/generated_pdfs/:path*", "destination": "http://z79hp0oa5ojq2z38ey2pb6y4.200.97.171.63.sslip.io/generated_pdfs/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
