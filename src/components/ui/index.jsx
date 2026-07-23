@@ -20,7 +20,7 @@ export function Logo({ size = 36 }) {
 }
 
 // ── NavBar ────────────────────────────────────────────────────────────────────
-export function NavBar({ links = [] }) {
+export function NavBar({ links = [], externalLink }) {
   const { brand, s, C } = useBrand();
   return (
     <nav style={s.nav}>
@@ -34,6 +34,14 @@ export function NavBar({ links = [] }) {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }} className="nav-links">
+          {externalLink && (
+            <a
+              href={externalLink.href}
+              style={{ color: "#6b7280", border: "1px solid #e2e8f0", borderRadius: 8, padding: "7px 16px", fontSize: 13, fontWeight: 600, textDecoration: "none" }}
+            >
+              {externalLink.label}
+            </a>
+          )}
           {links.map((l) => (
             <button
               key={l.label}

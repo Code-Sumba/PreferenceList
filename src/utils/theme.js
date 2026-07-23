@@ -101,7 +101,7 @@ export const GLOBAL_CSS = `
     .app-main { padding: 20px 14px !important; }
     .nav-inner { padding: 10px 14px !important; }
     .nav-links { gap: 6px !important; }
-    .nav-links button { padding: 6px 10px !important; font-size: 12px !important; }
+    .nav-links button, .nav-links a { padding: 6px 10px !important; font-size: 12px !important; }
 
     .grid-2-col { grid-template-columns: 1fr !important; }
     .grid-4-col { grid-template-columns: 1fr 1fr !important; gap: 20px 14px !important; }

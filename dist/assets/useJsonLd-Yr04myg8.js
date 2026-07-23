@@ -1,0 +1,1 @@
+import{r}from"./index-BgOPycV1.js";function i(t,n){r.useEffect(()=>{if(!n)return;let e=document.getElementById(t);return e||(e=document.createElement("script"),e.type="application/ld+json",e.id=t,document.head.appendChild(e)),e.textContent=JSON.stringify(n),()=>e?.remove()},[t,n])}export{i as u};

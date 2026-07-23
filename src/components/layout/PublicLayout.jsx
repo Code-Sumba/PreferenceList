@@ -11,11 +11,13 @@ const FOOTER_LINKS = [
   { to: "/about", label: "About" },
 ];
 
+const MHTCET_PREDICTOR = { href: "https://mhtcet.mindzspark.in", label: "Free MHT-CET Predictor" };
+
 export function PublicLayout({ children, navLinks = [] }) {
   const { s, brand, C } = useBrand();
   return (
     <div style={s.page}>
-      <NavBar links={navLinks} />
+      <NavBar links={navLinks} externalLink={MHTCET_PREDICTOR} />
       <main style={s.main} className="app-main">{children}</main>
       <footer style={{ textAlign: "center", padding: "24px", color: C.faint, fontSize: 12 }}>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "8px 20px", marginBottom: 12 }}>
@@ -24,6 +26,9 @@ export function PublicLayout({ children, navLinks = [] }) {
               {l.label}
             </Link>
           ))}
+          <a href={MHTCET_PREDICTOR.href} style={{ color: C.muted, fontSize: 12.5, fontWeight: 600, textDecoration: "none" }}>
+            {MHTCET_PREDICTOR.label}
+          </a>
         </div>
         {brand.footer_text || `© ${new Date().getFullYear()} ${brand.name}`}
       </footer>
