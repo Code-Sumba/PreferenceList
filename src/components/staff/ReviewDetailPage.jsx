@@ -117,7 +117,20 @@ export default function ReviewDetailPage() {
   if (loading) return <AppLayout showCredits={false}><div style={{ textAlign: "center", padding: 60 }}><Spinner size={28} /></div></AppLayout>;
   if (!review) return null;
 
-  const addPanelForm = { percentile: review.percentile, category_label: "", seat_type: "", gender: "", category_codes: [] };
+  const rawCategoryLabel = review.application?.category_label ?? review.form_data?.category_label ?? "";
+  const parsed = rawCategoryLabel.includes("·")
+    ? rawCategoryLabel.split("·").map((part) => part.trim())
+    : [rawCategoryLabel.trim()];
+  const category_label = parsed[0] || "";
+  const seat_type = review.application?.seat_type ?? parsed[1] ?? "";
+
+  const addPanelForm = {
+    percentile: review.percentile,
+    category_label,
+    seat_type,
+    gender: review.application?.gender ?? "",
+    category_codes: [],
+  };
 
   const app = review.application;
   const waNumber = app?.mobile ? app.mobile.replace(/\D/g, "").replace(/^(?!91)(\d{10})$/, "91$1") : "";
