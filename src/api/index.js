@@ -138,6 +138,8 @@ export const adminListStudents = (search = "") => {
   if (search) p.set("search", search);
   return api.get(`/api/client/admin/students?${p}`, adminCfg()).then((r) => r.data);
 };
+export const adminCreateStudent = (payload) =>
+  api.post("/api/client/admin/students", payload, adminCfg()).then((r) => r.data);
 export const adminGetStudentDetail = (email) =>
   api.get(`/api/client/admin/students/${encodeURIComponent(email)}`, adminCfg()).then((r) => r.data);
 export const adminAdjustCredits = (email, delta, reason) =>
